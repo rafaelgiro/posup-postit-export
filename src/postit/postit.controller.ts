@@ -7,6 +7,7 @@ import {
 } from '@nestjs/common';
 import * as fs from 'fs';
 import * as path from 'path';
+import { PostIt } from './postit';
 
 import { PostItService } from './postit.service';
 
@@ -14,12 +15,19 @@ import { PostItService } from './postit.service';
 export class FileController {
   constructor(private readonly postItService: PostItService) {}
 
+  @Get()
+  async getAllPostIt(): Promise<PostIt[]> {
+    return this.postItService.getAllPostIt();
+  }
+
   @Get(':id')
   async getPostItById(
     @Param('id') id: string,
     @Response({ passthrough: true }) res,
   ): Promise<StreamableFile> {
     const note = await this.postItService.getPostItById(id);
+    console.log(id);
+    console.log(note);
 
     fs.writeFileSync('temp/postit.txt', note.content);
 

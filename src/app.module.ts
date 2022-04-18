@@ -5,7 +5,7 @@ import { PostItModule } from './postit/postit.module';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb+srv://userposup:userposup@posup-mongodb.zvffb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+      'mongodb://userpostit:userpostit123@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=30&appName=mongosh+1.3.1',
     ),
     PostItModule,
   ],

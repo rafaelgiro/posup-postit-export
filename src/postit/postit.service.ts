@@ -9,6 +9,10 @@ export class PostItService {
     @InjectModel('PostIt') private readonly postItModel: Model<PostIt>,
   ) {}
 
+  async getAllPostIt() {
+    return await this.postItModel.find().exec();
+  }
+
   async getPostItById(id: string) {
     return await this.postItModel.findById(id).exec();
   }
