@@ -30,10 +30,10 @@ export class FileController {
     console.log(id);
     console.log(note);
 
-    fs.writeFileSync('temp/postit.txt', note.content);
+    fs.writeFileSync('file/postit.txt', note.content);
 
     const file = fs.createReadStream(
-      path.join(process.cwd(), 'temp/postit.txt'),
+      path.join(process.cwd(), 'file/postit.txt'),
     );
 
     res.set({
