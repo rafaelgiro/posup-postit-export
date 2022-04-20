@@ -27,14 +27,11 @@ export class FileController {
     @Response({ passthrough: true }) res,
   ): Promise<StreamableFile> {
     const note = await this.postItService.getPostItById(id);
-    console.log(id);
-    console.log(note);
+    const fileTxt = path.join(process.cwd(), 'postit.txt');
 
-    fs.writeFileSync('file/postit.txt', note.content);
+    fs.writeFileSync(fileTxt, note.content);
 
-    const file = fs.createReadStream(
-      path.join(process.cwd(), 'file/postit.txt'),
-    );
+    const file = fs.createReadStream(fileTxt);
 
     res.set({
       'Content-Type': 'application/json',
